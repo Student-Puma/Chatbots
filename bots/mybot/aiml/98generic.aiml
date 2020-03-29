@@ -4,7 +4,7 @@
   <!-- Saludos -->
 
   <category>
-    <pattern>HOLA</pattern>
+    <pattern>SALUDO</pattern>
     <template>
       <random>
         <li>¡Hola!</li>
@@ -15,32 +15,16 @@
   </category>
 
   <category>
-    <pattern>* HOLA *</pattern>
-    <template><srai>HOLA</srai></template>
+    <pattern>^ HOLA ^</pattern>
+    <template><srai>SALUDO</srai></template>
   </category>
   <category>
-    <pattern>HOLA *</pattern>
-    <template><srai>HOLA</srai></template>
+    <pattern>^ BUENOS DIAS ^</pattern>
+    <template><srai>SALUDO</srai></template>
   </category>
   <category>
-    <pattern>* HOLA</pattern>
-    <template><srai>HOLA</srai></template>
-  </category>
-  <category>
-    <pattern>* BUENOS DIAS *</pattern>
-    <template><srai>HOLA</srai></template>
-  </category>
-  <category>
-    <pattern>BUENOS DIAS *</pattern>
-    <template><srai>HOLA</srai></template>
-  </category>
-  <category>
-    <pattern>* BUENOS DIAS</pattern>
-    <template><srai>HOLA</srai></template>
-  </category>
-  <category>
-    <pattern>BUENOS DIAS</pattern>
-    <template><srai>HOLA</srai></template>
+    <pattern>^ BUENAS TARDES ^</pattern>
+    <template><srai>SALUDO</srai></template>
   </category>
 
 </aiml>

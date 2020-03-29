@@ -59,5 +59,13 @@
     <pattern>_ DEPORTIVAS ^</pattern>
     <template><srai>DEPORTES</srai></template>
   </category>
+  <category>
+    <pattern>_ MUVER ^</pattern>
+    <template><srai>DEPORTES</srai></template>
+  </category>
+  <category>
+    <pattern>_ MUVERS ^</pattern>
+    <template><srai>DEPORTES</srai></template>
+  </category>
 
 </aiml>

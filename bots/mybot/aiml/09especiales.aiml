@@ -16,6 +16,10 @@
     <pattern>_ NECESIDADES ^ ESPECIALES ^</pattern>
     <template><srai>NECESIDADES ESPECIALES</srai></template>
   </category>
+  <category>
+    <pattern>_ NECESIDAD ^ ESPECIAL ^</pattern>
+    <template><srai>NECESIDADES ESPECIALES</srai></template>
+  </category>
 
   <!-- Variantes -->
 

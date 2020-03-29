@@ -13,7 +13,8 @@
   <category>
     <pattern>*</pattern>
     <template>
-      Lo siento, no te qué quieres decir con: <star/>
+      Lo siento, no te qué quieres decir con:
+<star/>
 Prueba a limpiar la pregunta de comas, comillas y otros caracteres especiales o trata de reformularla.
     </template>
   </category>
