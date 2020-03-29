@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+  <!--
+    PREGUNTA 16) ¿Cómo hago para acceder a la Biblioteca?
+  -->
+
+  <category>
+    <pattern>BIBLIOTECA</pattern>
+    <template>La Biblioteca Rosalía de Castro es el principal lugar de estudio del Campus de Ourense. Se encuentra en la mitad más nueva de éste, cruzando el puente. No es necesario identificación para acceder a ella.</template>
+  </category>
+
+  <!-- Preguntas -->
+
+  <category>
+    <pattern>_ BIBLIOTECA ^</pattern>
+    <template><srai>BIBLIOTECA</srai></template>
+  </category>
+  <category>
+    <pattern>_ BIBLIO ^</pattern>
+    <template><srai>BIBLIOTECA</srai></template>
+  </category>
+
+</aiml>

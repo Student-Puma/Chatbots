@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+  <!--
+    PREGUNTA 1) Háblame un poco sobre la Universidad de Vigo
+  -->
+
+  <category>
+    <pattern>UVIGO</pattern>
+    <template>La Universidade de Vigo es una institución joven y dinámica que te ofrece una gran oferta formativa en los tres campus especializados e innovadores que la conforman (Ourense, Pontevedra y Vigo). En nuestros campus podrás estudiar 122 grados y másters oficiales, 39 programas de doctorado, cuatro titulaciones de programación conjunta y cuatro dobles titulaciones con universidades extranjeras. Ofrecemos además cientos de programas, eventos, talleres y cursos de lenguas y, por supuesto, nuestro programa para mayores.</template>
+  </category>
+  
+  <!-- Preguntas -->
+
+  <category>
+    <pattern>^ UVIGO ^</pattern>
+    <template><srai>UVIGO</srai></template>
+  </category>
+
+  <category>
+    <pattern>^ UNIVERSIDAD DE VIGO ^</pattern>
+    <template><srai>UVIGO</srai></template>
+  </category>
+
+  <!-- Sólo habla sobre la UVIGO -->
+
+  <category>
+    <pattern>^ UNIVERSIDAD DE *</pattern>
+    <template>Lo siento, sólo puedo aconsejarte sobre la Universidad de Vigo, no sé nada sobre la Universidad de <star index="2"/>.</template>
+  </category>
+
+  <!-- Tratar a la Universidad como la UVigo -->
+
+  <category>
+    <pattern>^ UNIVERSIDAD ^</pattern>
+    <template><srai>UVIGO</srai></template>
+  </category>
+
+</aiml>

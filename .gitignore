@@ -1,0 +1,4 @@
+out/
+data/
+bots/**/aimlif/
+!data/find.txt

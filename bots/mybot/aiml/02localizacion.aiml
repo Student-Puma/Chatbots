@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+  <!--
+    PREGUNTA 2) ¿Dónde se encuentra la ESEI?
+  -->
+
+  <category>
+    <pattern>LOCALIZACION</pattern>
+    <template>La ESEI esta situada en el Campus de Ourense, en el Edificio Politécnico, el cual es característico por estar lleno de cristaleras.</template>
+  </category>
+
+  <!-- Preguntas -->
+
+  <category>
+    <pattern>^ DONDE ^ ESEI ^</pattern>
+    <template><srai>LOCALIZACION</srai></template>
+  </category>
+  <category>
+    <pattern>^ COMO ^ ESEI ^</pattern>
+    <template><srai>LOCALIZACION</srai></template>
+  </category>
+  <category>
+    <pattern>^ LLEGAR ^ ESEI ^</pattern>
+    <template><srai>LOCALIZACION</srai></template>
+  </category>
+  <category>
+    <pattern>^ LLEGO ^ ESEI</pattern>
+    <template><srai>LOCALIZACION</srai></template>
+  </category>
+  <category>
+    <pattern>^ DIRECCION ^ ESEI ^</pattern>
+    <template><srai>LOCALIZACION</srai></template>
+  </category>
+  <category>
+    <pattern>^ ESEI ^ DIRECCION ^</pattern>
+    <template><srai>LOCALIZACION</srai></template>
+  </category>
+  <category>
+    <pattern>^ ZONA ^ ESEI ^</pattern>
+    <template><srai>LOCALIZACION</srai></template>
+  </category>
+  <category>
+    <pattern>^ ESEI ^ ZONA ^</pattern>
+    <template><srai>LOCALIZACION</srai></template>
+  </category>
+  <category>
+    <pattern>^ ENCUENTRA ^ ESEI ^</pattern>
+    <template><srai>LOCALIZACION</srai></template>
+  </category>
+  <category>
+    <pattern>^ ESEI ^ ENCUENTRA ^</pattern>
+    <template><srai>LOCALIZACION</srai></template>
+  </category>
+  <category>
+    <pattern>^ ENCUENTRO ^ ESEI ^</pattern>
+    <template><srai>LOCALIZACION</srai></template>
+  </category>
+  <category>
+    <pattern>^ ESEI ^ ENCUENTRO ^</pattern>
+    <template><srai>LOCALIZACION</srai></template>
+  </category>
+
+</aiml>
