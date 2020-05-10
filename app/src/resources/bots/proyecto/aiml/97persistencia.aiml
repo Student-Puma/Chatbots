@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+    <!-- Aprendizaje -->
+
+    <topic name="aprender">
+        <category>
+            <pattern>^ SI ^</pattern>
+            <template>
+                ¿Que deberia responder a la pregunta "<get name="pregunta"/>"?
+                <think><set name="topic">aprendiendo</set></think>
+            </template>
+        </category>
+
+        <category>
+            <pattern>*</pattern>
+            <template>
+                Podemos seguir charlando sobre cualquier otro tema relacionado con la ESEI
+                <think><set name="topic">unknown</set><set name="pregunta"></set></think>
+            </template>
+        </category>
+    </topic>
+
+    <topic name="aprendiendo">
+        <category>
+            <pattern>*</pattern>
+            <template>
+                <!-- Definicion de conocimiento -->
+                <learn>
+                    <category>
+                        <pattern>
+                            <eval><get name="pregunta"/></eval>
+                        </pattern>
+                        <template>
+                            <eval><star/></eval>
+                        </template>
+                    </category>
+                </learn>
+                Recordaré que tengo que contestar "<star/>" cuando me digas "<get name="pregunta"/>"
+                <think><set name="topic">unknown</set><set name="pregunta"></set></think>
+            </template>
+        </category>
+    </topic>
+</aiml>

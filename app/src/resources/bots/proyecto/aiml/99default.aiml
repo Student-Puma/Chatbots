@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+  <!-- Sin pregunta -->
+
+  <category>
+    <pattern>NORESP</pattern>
+    <template>No te preocupes, pregúntame lo que quieras sobre la ESEI cuando quieras.</template>
+  </category>
+
+  <!-- Sin respuesta -->
+
+  <category>
+    <pattern>*</pattern>
+    <template>
+      Lo siento, no se qué quieres decir con: <star/>
+¿Quieres enseñarme qué debería responder?
+<think>
+  <set name="pregunta"><star/></set>
+  <set name="topic">aprender</set>
+</think>
+    </template>
+  </category>
+
+</aiml>

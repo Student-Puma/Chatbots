@@ -1,4 +1,1 @@
-out/
-data/
-bots/**/aimlif/
-!data/find.txt
+/app/src/resources/bots/proyecto/aimlif/*

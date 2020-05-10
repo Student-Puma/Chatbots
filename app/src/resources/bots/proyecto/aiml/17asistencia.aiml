@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+  <!--
+    PREGUNTA 17) ¿Cómo puedo justificar mi asistencia a las actividades de evaluación y a sus revisiones?
+  -->
+
+  <category>
+    <pattern>ASISTENCIA</pattern>
+    <template>La asistencia a las actividades de evaluación y revisión sólo será válida para alumnos que estén dados de alta en dicha actividad en la Secretaría Virtual. Además, muchas de las asignaturas requiren que el estudiante disponga de una dirección de correo electrónico facilitada por el centro y una cuenta en la plataforma virtual FaiTIC.
+En el caso de no poder asistir, es necesario un justificante firmado conforme un evento prioritario impedía al alumno estar presente en la actividad.</template>
+  </category>
+
+  <!-- Preguntas -->
+
+  <category>
+    <pattern>_ ASISTENCIA ^</pattern>
+    <template><srai>ASISTENCIA</srai></template>
+  </category>
+  <category>
+    <pattern>_ JUSTIFICAR ^</pattern>
+    <template><srai>ASISTENCIA</srai></template>
+  </category>
+  <category>
+    <pattern>_ EVALUACION ^</pattern>
+    <template><srai>ASISTENCIA</srai></template>
+  </category>
+  <category>
+    <pattern>_ EVALUACIONES ^</pattern>
+    <template><srai>ASISTENCIA</srai></template>
+  </category>
+  <category>
+    <pattern>_ REVISION ^</pattern>
+    <template><srai>ASISTENCIA</srai></template>
+  </category>
+  <category>
+    <pattern>_ REVISIONES ^</pattern>
+    <template><srai>ASISTENCIA</srai></template>
+  </category>
+
+</aiml>

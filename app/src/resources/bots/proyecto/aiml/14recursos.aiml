@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+  <!--
+    PREGUNTA 14) ¿Con qué recursos materiales y servicios cuenta la ESEI?
+  -->
+
+  <category>
+    <pattern>RECURSOS MATERIALES</pattern>
+    <template>La ESEI cuenta con un aula de libre acceso con el equipamiento necesario para la realización de los diferentes trabajos dentro del grado, asi como una sala de estudio, laboratorios y seminarios. Puedes obtener más información en la página de la ESEI (https://esei.uvigo.es/a-esei/recursos-materiais-e-servizos/aulas-laboratorios-seminarios-e-despachos/).</template>
+  </category>
+
+  <!-- Preguntas -->
+
+  <category>
+    <pattern>_ RECURSOS MATERIALES ^</pattern>
+    <template><srai>RECURSOS MATERIALES</srai></template>
+  </category>
+  <category>
+    <pattern>_ SERVICIOS ^</pattern>
+    <template><srai>RECURSOS MATERIALES</srai></template>
+  </category>
+  <category>
+    <pattern>_ INSTALACIONES ^</pattern>
+    <template><srai>RECURSOS MATERIALES</srai></template>
+  </category>
+  <category>
+    <pattern>_ SALON DE ACTOS ^</pattern>
+    <template><srai>RECURSOS MATERIALES</srai></template>
+  </category>
+  <category>
+    <pattern>_ SEMINARIOS ^</pattern>
+    <template><srai>RECURSOS MATERIALES</srai></template>
+  </category>
+  <category>
+    <pattern>_ AULA ^</pattern>
+    <template><srai>RECURSOS MATERIALES</srai></template>
+  </category>
+  <category>
+    <pattern>_ AULAS ^</pattern>
+    <template><srai>RECURSOS MATERIALES</srai></template>
+  </category>
+  <category>
+    <pattern>_ LIBRE ACCESO ^</pattern>
+    <template><srai>RECURSOS MATERIALES</srai></template>
+  </category>
+  <category>
+    <pattern>_ LABORATORIO ^</pattern>
+    <template><srai>RECURSOS MATERIALES</srai></template>
+  </category>
+  <category>
+    <pattern>_ LABORATORIOS ^</pattern>
+    <template><srai>RECURSOS MATERIALES</srai></template>
+  </category>
+
+</aiml>

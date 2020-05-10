@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+  <!--
+    PREGUNTA 13) ¿Dónde puedo consultar la oferta de prácticas en empresas?
+  -->
+
+  <category>
+    <pattern>DONDE PRACTICAS</pattern>
+    <template>Puedes consultar las ofertas online en la web de la ESEI (https://esei.uvigo.es/docencia/practicas-en-empresa/) o de manera presencial en cualquier edificio Administrativo de la UVigo.</template>
+  </category>
+
+  <!-- Preguntas -->
+
+  <category>
+    <pattern>^ DONDE _ PRACTICAS ^</pattern>
+    <template><srai>DONDE PRACTICAS</srai></template>
+  </category>
+  <category>
+    <pattern>_ PRACTICAS ^ DONDE ^</pattern>
+    <template><srai>DONDE PRACTICAS</srai></template>
+  </category>
+  <category>
+    <pattern>^ COMO _ PRACTICAS ^</pattern>
+    <template><srai>DONDE PRACTICAS</srai></template>
+  </category>
+  <category>
+    <pattern>_ PRACTICAS ^ COMO ^</pattern>
+    <template><srai>DONDE PRACTICAS</srai></template>
+  </category>
+  <category>
+    <pattern>^ CONSULTAR _ PRACTICAS ^</pattern>
+    <template><srai>DONDE PRACTICAS</srai></template>
+  </category>
+  <category>
+    <pattern>_ PRACTICAS ^ CONSULTAR ^</pattern>
+    <template><srai>DONDE PRACTICAS</srai></template>
+  </category>
+  <category>
+    <pattern>^ QUE _ CONSULTAR _ PRACTICAS ^</pattern>
+    <template><srai>DONDE PRACTICAS</srai></template>
+  </category>
+  <category>
+    <pattern>_ PRACTICAS ^ QUE _ CONSULTAR ^</pattern>
+    <template><srai>DONDE PRACTICAS</srai></template>
+  </category>
+  <category>
+    <pattern>^ DONDE _ CONSULTAR _ PRACTICAS ^</pattern>
+    <template><srai>DONDE PRACTICAS</srai></template>
+  </category>
+  <category>
+    <pattern>_ PRACTICAS ^ DONDE _ CONSULTAR ^</pattern>
+    <template><srai>DONDE PRACTICAS</srai></template>
+  </category>
+  <category>
+    <pattern>^ OFERTA _ PRACTICAS ^</pattern>
+    <template><srai>DONDE PRACTICAS</srai></template>
+  </category>
+  <category>
+    <pattern>_ PRACTICAS ^ OFERTA ^</pattern>
+    <template><srai>DONDE PRACTICAS</srai></template>
+  </category>
+  <category>
+    <pattern>^ OFERTAS _ PRACTICAS ^</pattern>
+    <template><srai>DONDE PRACTICAS</srai></template>
+  </category>
+  <category>
+    <pattern>_ PRACTICAS ^ OFERTAS ^</pattern>
+    <template><srai>DONDE PRACTICAS</srai></template>
+  </category>
+  <category>
+    <pattern>^ LISTADO _ PRACTICAS ^</pattern>
+    <template><srai>DONDE PRACTICAS</srai></template>
+  </category>
+  <category>
+    <pattern>_ PRACTICAS ^ LISTADO ^</pattern>
+    <template><srai>DONDE PRACTICAS</srai></template>
+  </category>
+  <category>
+    <pattern>^ LISTADOS _ PRACTICAS ^</pattern>
+    <template><srai>DONDE PRACTICAS</srai></template>
+  </category>
+  <category>
+    <pattern>_ PRACTICAS ^ LISTADOS ^</pattern>
+    <template><srai>DONDE PRACTICAS</srai></template>
+  </category>
+
+</aiml>

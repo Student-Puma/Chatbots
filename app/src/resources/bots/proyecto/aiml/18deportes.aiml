@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+  <!--
+    PREGUNTA 18) ¿Qué actividades deportivas ofrece la ESEI?
+  -->
+
+  <category>
+    <pattern>DEPORTES</pattern>
+    <template>La ESEI, por ser parte de la UVigo, promueve la iniciativa mUVers, donde cualquier persona relacionada con la Universidad tendrá acceso a un ámbito inmenso de actividades deportivas y competiciones. Toda la información está disponible en la página web de la Universidad de Vigo (https://www.uvigo.gal/es/campus/deporte/actividades-competiciones).</template>
+  </category>
+
+  <!-- Pregunta obligatoria -->
+
+  <category>
+    <pattern>_ ACTIVIDADES DEPORTIVAS *</pattern>
+    <template><srai>DEPORTES</srai></template>
+  </category>
+  <category>
+    <pattern>_ ACTIVIDADES DEPORTIVAS</pattern>
+    <template><srai>DEPORTES</srai></template>
+  </category>
+  <category>
+    <pattern>ACTIVIDADES DEPORTIVAS *</pattern>
+    <template><srai>DEPORTES</srai></template>
+  </category>
+  <category>
+    <pattern>ACTIVIDADES DEPORTIVAS</pattern>
+    <template><srai>DEPORTES</srai></template>
+  </category>
+
+  <!-- Variantes -->
+
+  <category>
+    <pattern>_ DEPORTES ^</pattern>
+    <template><srai>DEPORTES</srai></template>
+  </category>
+  <category>
+    <pattern>_ DEPORTE ^</pattern>
+    <template><srai>DEPORTES</srai></template>
+  </category>
+  <category>
+    <pattern>_ EJERCICIO ^</pattern>
+    <template><srai>DEPORTES</srai></template>
+  </category>
+  <category>
+    <pattern>_ DEPORTIVO ^</pattern>
+    <template><srai>DEPORTES</srai></template>
+  </category>
+  <category>
+    <pattern>_ DEPORTIVOS ^</pattern>
+    <template><srai>DEPORTES</srai></template>
+  </category>
+  <category>
+    <pattern>_ DEPORTIVA ^</pattern>
+    <template><srai>DEPORTES</srai></template>
+  </category>
+  <category>
+    <pattern>_ DEPORTIVAS ^</pattern>
+    <template><srai>DEPORTES</srai></template>
+  </category>
+  <category>
+    <pattern>_ MUVER ^</pattern>
+    <template><srai>DEPORTES</srai></template>
+  </category>
+  <category>
+    <pattern>_ MUVERS ^</pattern>
+    <template><srai>DEPORTES</srai></template>
+  </category>
+
+</aiml>

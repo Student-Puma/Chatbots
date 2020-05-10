@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+  <!--
+    PREGUNTA 12) ¿Qué tipo de prácticas puedo realizar como alumno de la ESEI?
+  -->
+
+  <category>
+    <pattern>QUE PRACTICAS</pattern>
+    <template>Puedes realizar diferentes tipos de prácticas, tanto curriculares como extracurriculares, en cualquier empresa del sector informático. Además, la ESEI dispone de una bolsa de prácticas que te pondrá en contacto con diferentes empresas afiliadas.</template>
+  </category>
+
+  <!-- Preguntas -->
+
+  <category>
+    <pattern>^ QUE ^ PRACTICAS _</pattern>
+    <template><srai>QUE PRACTICAS</srai></template>
+  </category>
+  <category>
+    <pattern>_ PRACTICAS ^ QUE ^</pattern>
+    <template><srai>QUE PRACTICAS</srai></template>
+  </category>
+  <category>
+    <pattern>^ CUALES ^ PRACTICAS _</pattern>
+    <template><srai>QUE PRACTICAS</srai></template>
+  </category>
+  <category>
+    <pattern>_ PRACTICAS ^ CUALES ^</pattern>
+    <template><srai>QUE PRACTICAS</srai></template>
+  </category>
+  <category>
+    <pattern>^ PUEDO ^ PRACTICAS _</pattern>
+    <template><srai>QUE PRACTICAS</srai></template>
+  </category>
+  <category>
+    <pattern>_ PRACTICAS ^ PUEDO ^</pattern>
+    <template><srai>QUE PRACTICAS</srai></template>
+  </category>
+
+  <category>
+    <pattern>_ TIPO ^ PRACTICAS ^</pattern>
+    <template><srai>QUE PRACTICAS</srai></template>
+  </category>
+  <category>
+    <pattern>_ TIPOS ^ PRACTICAS ^</pattern>
+    <template><srai>QUE PRACTICAS</srai></template>
+  </category>
+  <category>
+    <pattern>^ TIPOS _ PRACTICAS ^</pattern>
+    <template><srai>QUE PRACTICAS</srai></template>
+  </category>
+  <category>
+    <pattern>^ TIPO _ PRACTICAS ^</pattern>
+    <template><srai>QUE PRACTICAS</srai></template>
+  </category>
+
+</aiml>

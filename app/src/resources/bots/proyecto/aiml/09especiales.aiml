@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+  <!--
+    PREGUNTA 9) ¿Cuál es el protocolo de acogida de alumnos con necesidades educativas especiales?
+  -->
+
+  <category>
+    <pattern>NECESIDADES ESPECIALES</pattern>
+    <template>Existe un protocolo enfocado a alumnos con necesidades educativas especiales que se basa en la incorporación al programa PIUNE, atención psicológica, jornadas de refuerzo y acompañamiento por parte de los voluntarios de la Universidad.</template>
+  </category>
+
+  <!-- Preguntas -->
+
+  <category>
+    <pattern>_ NECESIDADES ^ ESPECIALES ^</pattern>
+    <template><srai>NECESIDADES ESPECIALES</srai></template>
+  </category>
+  <category>
+    <pattern>_ NECESIDAD ^ ESPECIAL ^</pattern>
+    <template><srai>NECESIDADES ESPECIALES</srai></template>
+  </category>
+
+  <!-- Variantes -->
+
+  <category>
+    <pattern>_ PIUNE ^</pattern>
+    <template><srai>NECESIDADES ESPECIALES</srai></template>
+  </category>
+
+</aiml>

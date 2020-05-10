@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+  <!-- Saludos -->
+
+  <category>
+    <pattern>SALUDO</pattern>
+    <template>
+      <random>
+        <li>¡Hola!</li>
+        <li>¡Buenos días!</li>
+        <li>¡Hola! Pregúntame lo que quieras sobre la ESEI.</li>
+      </random>
+    </template>
+  </category>
+
+  <category>
+    <pattern>^ HOLA ^</pattern>
+    <template><srai>SALUDO</srai></template>
+  </category>
+  <category>
+    <pattern>^ BUENOS DIAS ^</pattern>
+    <template><srai>SALUDO</srai></template>
+  </category>
+  <category>
+    <pattern>^ BUENAS TARDES ^</pattern>
+    <template><srai>SALUDO</srai></template>
+  </category>
+
+</aiml>

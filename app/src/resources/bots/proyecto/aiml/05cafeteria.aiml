@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+  <!--
+    PREGUNTA 5) ¿Hay una cafetería en la ESEI?
+  -->
+
+  <category>
+    <pattern>CAFETERIA</pattern>
+    <template>La ESEI dispone de una maravillosa cafetería en la planta baja. Te recomiendo los pinchos de totilla rellenos, ¡son toda una delicia!</template>
+  </category>
+
+  <!-- Preguntas -->
+
+  <category>
+    <pattern>_ CAFETERIA ^</pattern>
+    <template><srai>CAFETERIA</srai></template>
+  </category>
+  <category>
+    <pattern>_ CAFETERIAS ^</pattern>
+    <template><srai>CAFETERIA</srai></template>
+  </category>
+  <category>
+    <pattern>_ DESAYUNO ^</pattern>
+    <template><srai>CAFETERIA</srai></template>
+  </category>
+  <category>
+    <pattern>_ DESAYUNOS ^</pattern>
+    <template><srai>CAFETERIA</srai></template>
+  </category>
+  <category>
+    <pattern>_ DESAYUNAR ^</pattern>
+    <template><srai>CAFETERIA</srai></template>
+  </category>
+  <category>
+    <pattern>_ COMIDA ^</pattern>
+    <template><srai>CAFETERIA</srai></template>
+  </category>
+  <category>
+    <pattern>_ COMIDAS ^</pattern>
+    <template><srai>CAFETERIA</srai></template>
+  </category>
+  <category>
+    <pattern>_ COMER ^</pattern>
+    <template><srai>CAFETERIA</srai></template>
+  </category>
+  <category>
+    <pattern>_ BEBER ^</pattern>
+    <template><srai>CAFETERIA</srai></template>
+  </category>
+  <category>
+    <pattern>_ BEBIDA ^</pattern>
+    <template><srai>CAFETERIA</srai></template>
+  </category>
+  <category>
+    <pattern>_ BEBIDAS ^</pattern>
+    <template><srai>CAFETERIA</srai></template>
+  </category>
+  <category>
+    <pattern>_ BOCADILLO ^</pattern>
+    <template><srai>CAFETERIA</srai></template>
+  </category>
+  <category>
+    <pattern>_ BOCADILLOS ^</pattern>
+    <template><srai>CAFETERIA</srai></template>
+  </category>
+  <category>
+    <pattern>_ PINCHO ^</pattern>
+    <template><srai>CAFETERIA</srai></template>
+  </category>
+  <category>
+    <pattern>_ PINCHOS ^</pattern>
+    <template><srai>CAFETERIA</srai></template>
+  </category>
+  <category>
+    <pattern>_ TORTILLA ^</pattern>
+    <template><srai>CAFETERIA</srai></template>
+  </category>
+  <category>
+    <pattern>_ TERRAZA ^</pattern>
+    <template><srai>CAFETERIA</srai></template>
+  </category>
+  <category>
+    <pattern>_ REFRESCO ^</pattern>
+    <template><srai>CAFETERIA</srai></template>
+  </category>
+  <category>
+    <pattern>_ REFRESCOS ^</pattern>
+    <template><srai>CAFETERIA</srai></template>
+  </category>
+
+</aiml>
