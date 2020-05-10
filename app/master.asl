@@ -1,4 +1,5 @@
 // Agente master
+// Autor: Diego Enrique Fontán Lorenzo
 
 /**************** Conocimiento ****************/
 

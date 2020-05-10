@@ -1,4 +1,5 @@
 // Agente student
+// Autor: Diego Enrique Fontán Lorenzo
 
 /**************** Conocimiento ****************/
 
@@ -135,12 +136,13 @@ valida(Respuesta) :-
 // -- Entrypoint -- //
 
 +!start : bot(created) <-
-	/*!reset;
+	!reset;
 	!conversacion_inicial;
 	.wait(1000);
 	!preguntar_tq_ntq;
 	.wait(1000);
-	!preguntar_aq.*/
+	!preguntar_aq;
+	.wait(1000);
 	!servicios.
 
 // Resetear preguntas
@@ -182,7 +184,7 @@ valida(Respuesta) :-
 	.println;
 	.println(" ~~~~~~~~~~~~~~~~ REQUERIR SERVICIOS ~~~~~~~~~~~~~~~~~~~ ");
 	.println;
-	/*!decir("Soy Kike y quiero cambiar de grupo en SI");
+	!decir("Soy Kike y quiero cambiar de grupo en SI");
 	!decir("Si");
 	!decir("5");
 	.wait(10000);
@@ -191,12 +193,19 @@ valida(Respuesta) :-
 	!decir("Quiero un cambio de grupo en TALF")
 	!decir("No");
 	!decir("Me gustaria reservar un seminario el lunes a las 6");
-	.wait(10000);*/
-	!decir("Me llamo Kike");
+	.wait(10000);
 	!decir("Tambien me ayudarias a solicitar practicas en empresas?");
 	!decir("Finalmente, quiero elegir un TFG propuesto dado que varios me gustan");
 	!decir("2");
-	.wait(1000).
+	!decir("Mejor desearia proponer mi propio TFG");
+	!decir("Mejora de la infraestructura de dominio de microservicios en entornos controlados");
+	.wait(10000);
+	!decir("De hecho, quiero defender mi TFG cuanto antes");
+	!decir("Si");
+	.wait(10000);
+	!decir("Aunque antes tendria que hacer la solicitud de la evaluacion por compensacion");
+	!decir("TALF");
+	.wait(10000).
 	
 +!conversacion_inicial <-
 	.println;

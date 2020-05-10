@@ -21,7 +21,7 @@
                 <set name="nombre"><star/></set>
                 <set name="login">unknown</set>
             </think>
-            Recordare que te llamas <star/>.
+            Recordare que te llamas <star/>, aunque no me consta que seas alumno de la ESEI.
         </template>
     </category>
 

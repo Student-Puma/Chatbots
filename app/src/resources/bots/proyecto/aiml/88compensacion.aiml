@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+    <!-- Plantillas -->
+
+    <category>
+        <pattern>CONVALIDACIONPENA</pattern>
+        <template>
+            <condition name="login">
+                <li value="unknown">
+Primero tienes que decirme quién eres.
+                </li>
+                <li>
+                <think><set name="topic">convalidacion</set></think>
+                ¿De que materia quieres que pida evaluación por compensación?
+                </li>
+            </condition>
+        </template>
+    </category>
+
+    <!-- Complejo -->
+
+    <category>
+        <pattern>_ EVALUACION POR COMPENSACION ^</pattern>
+        <template>
+            <srai>CONVALIDACIONPENA</srai>
+        </template>
+    </category>
+
+
+    <topic name="convalidacion">
+        <category>
+            <pattern>*</pattern>
+            <template>
+                <think><set name="topic">unknown</set></think>
+<mail> <subject>Evaluacion por compensacion :: <get name="login"/></subject> <to><bot name="email"/></to> <msg>Funciona</msg> </mail>
+            </template>
+        </category>
+
+    </topic>
+</aiml>

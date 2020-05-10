@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+    <!-- Plantillas -->
+
+    <category>
+        <pattern>DEFENDERTFG</pattern>
+        <template>
+            <condition name="login">
+                <li value="unknown">
+Primero tienes que decirme quién eres.
+                </li>
+                <li>
+                <think><set name="topic">defensatfg</set></think>
+                ¿Quieres que solicite una revisión y defensa de TFG a la entidad correspondiente via email?
+                </li>
+            </condition>
+        </template>
+    </category>
+
+    <!-- Complejo -->
+
+    <category>
+        <pattern>_ DEFENSA _ TFG ^</pattern>
+        <template>
+            <srai>DEFENDERTFG</srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>_ DEFENDER _ TFG ^</pattern>
+        <template>
+            <srai>DEFENDERTFG</srai>
+        </template>
+    </category>
+
+
+    <topic name="defensatfg">
+        <category>
+            <pattern>^ SI ^</pattern>
+            <template>
+                <think><set name="topic">unknown</set></think>
+<mail> <subject>Defensa TFG :: <get name="login"/></subject> <to><bot name="email"/></to> <msg>Funciona</msg> </mail>
+            </template>
+        </category>
+
+        <category>
+            <pattern>*</pattern>
+            <template>
+                <think><set name="topic">unknown</set></think>
+Lo dejaremos para otro momento, mejor.
+            </template>
+        </category>
+    </topic>
+
+</aiml>

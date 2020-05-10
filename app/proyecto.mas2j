@@ -10,8 +10,5 @@ MAS proyecto {
     agents:
 		student;
 		master;
-		
-		// tester;
-		// juan;
 }
 
