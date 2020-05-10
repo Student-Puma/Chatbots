@@ -124,7 +124,7 @@ numpreguntas(6).
 
 valida(Respuesta) :-
 	not .substring("<mail>", Respuesta) &
-	not .substring("<addset>", Respuesta).
+	not .substring("<new>", Respuesta).
 
 /****************** Metas ******************/
 
@@ -193,8 +193,11 @@ valida(Respuesta) :-
 	!decir("Me gustaria reservar un seminario el lunes a las 6");
 	.wait(10000);*/
 	!decir("Me llamo Kike");
-	!decir("Tambien me ayudarias a solicitar practicas en empresas?").
-
+	!decir("Tambien me ayudarias a solicitar practicas en empresas?");
+	!decir("Finalmente, quiero elegir un TFG propuesto dado que varios me gustan");
+	!decir("2");
+	.wait(1000).
+	
 +!conversacion_inicial <-
 	.println;
 	.println(" ~~~~~~~ REALIZANDO CONVERSACION INTRODUCTORIA ~~~~~~~~~ ");

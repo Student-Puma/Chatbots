@@ -19,9 +19,22 @@ filter(Respuesta, addset, To) :-
 	getValTag("<out>",Respuesta,To) &
 	.lower_case(To,File) &
 	gui.addValueOnSetFileFor(New,File,"proyecto").
+	
+filter(Respuesta, addmap, To) :- 
+	getValTag("<new>",Respuesta,Par) &
+	getValTag("<out>",Respuesta,To) &
+	split(Par,":",K,V) &
+	.lower_case(To,File) &
+	gui.addRelOnMapFileFor(K,V,File,"proyecto").
 
 // -- Etiquetas -- //
 	
+split(String, Delim, Izq, Drch) :-
+	.length(String,L) & .length(Delim, D) &
+	.substring(Delim, String, Pos) &
+	.substring(String,Izq,0,Pos) &
+	.substring(String,Drch,Pos + D,L).
+
 getValTag(Tag,String,Val) :- 
 	.substring(Tag,String,Fst) &
 	.length(Tag,N) &
@@ -33,7 +46,7 @@ getValTag(Tag,String,Val) :-
 // -- Filtro de conversaciones -- //
 
 valida(Respuesta) :-
-	.substring("<mail>", Respuesta) | .substring("<addset>", Respuesta).
+	.substring("<mail>", Respuesta) | .substring("<new>", Respuesta).
 
 /****************** Metas ******************/
 
@@ -58,6 +71,11 @@ valida(Respuesta) :-
 		.println("> Procesando peticion de addset");
 		?filter(Respuesta, addset, To);
 		.send(student, tell, answer("Incluido en la lista correctamente"));
+	};
+	if ( .substring("<addmap>", Respuesta) ) {
+		.println("> Procesando peticion de addmap");
+		?filter(Respuesta, addmap, To);
+		.send(student, tell, answer("Incluido en la seleccion correctamente"));
 	};
 	if ( .substring("<mail>", Respuesta) ) {
 		.println("> Procesando peticion de mailing");

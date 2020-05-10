@@ -1,67 +1,67 @@
-// Agent master in project proyecto.mas2j
+// Agente master
 
-/* Initial beliefs and rules */
+/**************** Conocimiento ****************/
+
+// Empezamos el proceso de pregunta - respuesta
 
 respuesta(1).
 
-/* -- Servicios -- */
+// -- Etiquetas -- //
 
-service(Answer, mailing) :-
-	checkTag("<mail>",Answer).
-checkTag(String,Answer) :-
-	.substring("<mail>",Answer).
+filter(Respuesta, mailing, To) :-
+	getValTag("<to>",Respuesta,To) &
+	getValTag("<subject>",Respuesta,Subject) &
+	getValTag("<msg>",Respuesta,Msg) &
+	gui.mailing(To,Subject,Msg).
 	
-service(Answer, addset) :-
-	checkTag("<addset>",Answer).
-checkTag(String,Answer) :-
-	.substring("<addset>",Answer).
+filter(Respuesta, addset, To) :- 
+	getValTag("<new>",Respuesta,New) &
+	getValTag("<out>",Respuesta,To) &
+	.lower_case(To,File) &
+	gui.addValueOnSetFileFor(New,File,"proyecto").
 
-/* Initial goals */
+// -- Etiquetas -- //
+	
+getValTag(Tag,String,Val) :- 
+	.substring(Tag,String,Fst) &
+	.length(Tag,N) &
+	.delete(0,Tag,RestTag) &
+	.concat("</",RestTag,EndTag) &
+	.substring(EndTag,String,End) &
+	.substring(String,Val,Fst+N,End).
+
+// -- Filtro de conversaciones -- //
+
+valida(Respuesta) :-
+	.substring("<mail>", Respuesta) | .substring("<addset>", Respuesta).
+
+/****************** Metas ******************/
 
 !start.
 
-/* Plans */
+/***************** Planes ******************/
 
-+!start : bot(created) <- +nothing.
+// -- Entrypoint -- //
 
-/* -- Filtros -- */
-
-+!filter(Respuesta, mailing, To) <-
-	!getValTag("<to>",Respuesta,To);
-	!getValTag("<subject>",Respuesta,Subject);
-	!getValTag("<msg>",Respuesta,Msg);
-	gui.mailing(To,Subject,Msg).
-	
-+!filter(Respuesta, mailing, To) <- +empty.
-
-+!getValTag(Tag,String,Val) <- 
-	.substring(Tag,String,Fst);
-	.length(Tag,N);
-	.delete(0,Tag,RestTag);
-	.concat("</",RestTag,EndTag);
-	.substring(EndTag,String,End);
-	.substring(String,Val,Fst+N,End).
++!start : bot(created).
 
 // -- Obtener respuestas -- //
 
-+answer(Respuesta) : service(Respuesta,mailing) | service(Respuesta,addset) <-
++answer(Respuesta) : valida(Respuesta) <-
 	-answer(Respuesta)[source(Source)];
 	?respuesta(N);
 	-+respuesta(N + 1);
 	+contestacion(N, Respuesta);
-	.println("Analizando: ", Respuesta);
-	if ( service(Respuesta, mailing) ) {
-		.println;
-		.println("Procesando peticion de mailing");
-		!filter(Respuesta, mailing, To);
-		.send(student, tell, answer("Mensaje enviado correctamente"));
-	}
-	if ( service(Respuesta, addset) ) {
-		.println;
-		.println("Procesando peticion de addset");
-		!filter(Respuesta, addset, To);
+	.println("Analizando el mensaje");
+	
+	if ( .substring("<addset>", Respuesta) ) {
+		.println("> Procesando peticion de addset");
+		?filter(Respuesta, addset, To);
 		.send(student, tell, answer("Incluido en la lista correctamente"));
-	}
+	};
+	if ( .substring("<mail>", Respuesta) ) {
+		.println("> Procesando peticion de mailing");
+		?filter(Respuesta, mailing, To);
+		.send(student, tell, answer("Acabo de mandar la peticion de la que hablamos"));
+	};
 	.wait(1000).
-
-
