@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+    <!-- Plantillas -->
+
+    <category>
+        <pattern>ALTA *</pattern>
+        <template>
+            <condition name="nombre">
+                <li value="unknown">
+                    Primero tienes que decirme quién eres.
+                </li>
+                <li>
+                    <condition name="nombre">
+                        <li value="unknown">
+Primero tienes que decirme quién eres.
+                        </li>
+                        <li>
+<srai>ALUMNO DE <star/> <get name="nombre"/></srai>
+<condition name="matriculado"><li value="NO">¿Quieres que proceda a realizar la matrícula?<think><set name="materia"><star/></set><set name="topic">alta</set></think></li></condition>
+                        </li>
+                    </condition>
+                </li>
+            </condition>
+        </template>
+    </category>
+
+    <!-- Correcto -->
+
+    <category>
+        <pattern>^ DE ALTA ^ <set>materias</set> ^</pattern>
+        <template>
+            <srai>ALTA <star index="3"/></srai>
+        </template>
+    </category>
+
+    <!-- Incorrecto -->
+
+    <category>
+        <pattern>^ DE ALTA * ^</pattern>
+        <template>
+            No es una materia válida para darte de alta
+        </template>
+    </category>
+
+    <topic name="alta">
+        <category>
+            <pattern>^ SI ^</pattern>
+            <template>
+                <addset><new><get name="nombre"/></new><get name="materia"/></addset>
+                <think><set name="materia">unknown</set><set name="topic">unknown</set></think>
+            </template>
+        </category>
+
+        <category>
+            <pattern>*</pattern>
+            <template>
+                Cancelaré el proceso, entonces.
+                <think><set name="materia">unknown</set><set name="topic">unknown</set></think>
+            </template>
+        </category>
+    </topic>
+
+</aiml>

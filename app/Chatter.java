@@ -56,9 +56,9 @@ public class Chatter extends Environment {
 				while (respuesta.contains("&gt;")) respuesta = respuesta.replace("&gt;", ">");
                 // Añadimos la percepción de una nueva respuesta al agente
                 // -- Versión antigua:
-                //addPercept(new LiteralImpl("answer").addTerms(new StringTermImpl(response)));
+                addPercept(new LiteralImpl("answer").addTerms(new StringTermImpl(respuesta)));
 				// -- Versión nueva:
-                addPercept(new LiteralImpl("answer").addTerms(new NumberTermImpl(++this.contador), new StringTermImpl(respuesta)));
+                // addPercept(new LiteralImpl("answer").addTerms(new NumberTermImpl(++this.contador), new StringTermImpl(respuesta)));
             } else {
                 return false;
             }

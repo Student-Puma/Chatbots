@@ -22,4 +22,16 @@
     </template>
   </category>
 
+    <!-- Separar preguntas encadenadas -->
+    
+    <category>
+    <pattern># Y #</pattern>
+    <template>
+Respondiendo a "<star/>":
+<srai><star/></srai>
+Y respecto a "<star index="2"/>":
+<srai><star index="2"/></srai>
+    </template>
+  </category>
+
 </aiml>

@@ -233,13 +233,13 @@ numpreguntas(6).
 
 // Versión mejorada para mostrar respuestas ya dadas
 // -- Chatter.java modificado
-+answer(ID, Respuesta) <-
++answer(Respuesta) <-
 	?respuesta(N);
 	-+respuesta(N + 1);
-	+contestacion(ID, Respuesta);
+	+contestacion(Respuesta);
 	.println;
 	.println(" >> Constestacion del bot << ");
 	.println;
-	.println(Respuesta)
+	.println(Respuesta);
 	.wait(1000).
 	

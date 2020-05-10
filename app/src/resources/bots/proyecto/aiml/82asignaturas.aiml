@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+    <!-- Correcto -->
+
+    <category>
+        <pattern>ALUMNO DE SI <set>SI</set></pattern>
+        <template>
+            Ya estas matriculado.
+            <think><set name="matriculado">SI</set></think>
+        </template>
+    </category>
+
+    <category>
+        <pattern>ALUMNO DE HAE <set>HAE</set></pattern>
+        <template>
+            Ya estas matriculado.
+            <think><set name="matriculado">SI</set></think>
+        </template>
+    </category>
+
+    <category>
+        <pattern>ALUMNO DE DGP <set>DGP</set></pattern>
+        <template>
+            Ya estas matriculado.
+            <think><set name="matriculado">SI</set></think>
+        </template>
+    </category>
+
+    <category>
+        <pattern>ALUMNO DE TALF <set>TALF</set></pattern>
+        <template>
+            Ya estas matriculado.
+            <think><set name="matriculado">SI</set></think>
+        </template>
+    </category>
+
+    <category>
+        <pattern>ALUMNO DE CDI <set>CDI</set></pattern>
+        <template>
+            Ya estas matriculado.
+            <think><set name="matriculado">SI</set></think>
+        </template>
+    </category>
+
+
+    <!-- Incorrecto -->
+
+    <category>
+        <pattern>ALUMNO DE *</pattern>
+        <template>
+            Aun no estas matriculado.
+            <think><set name="matriculado">NO</set></think>
+        </template>
+    </category>
+
+</aiml>
