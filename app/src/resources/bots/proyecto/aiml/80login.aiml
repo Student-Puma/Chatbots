@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+    <category>
+        <pattern>^ Soy <set>autorizados</set> ^</pattern>
+        <template>
+        <think>
+            <set name="login"><star index="2"/></set>
+        </think>
+        Hola <star index="2"/>, ya te he identificado.
+        </template>
+    </category>
+
+    <category>
+        <pattern>^ Soy * ^</pattern>
+        <template>
+            <think>
+                <set name="login">unknown</set>
+            </think>
+            No perteneces a la lista de autorizados
+        </template>
+    </category>
+
+    <category>
+        <pattern>Quien soy</pattern>
+        <template>
+            <condition name="login">
+                <li value="unknown">
+                    No lo sé, aún no te has identificado. 
+                </li>
+                <li>
+                    Estás logueado como <get name="login"/>.
+                </li>
+            </condition>
+        </template>
+    </category>
+</aiml>

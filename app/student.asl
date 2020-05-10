@@ -118,6 +118,7 @@ aq(18, " Que actividades ocio te gustan mas ").
 // Empezamos el proceso de pregunta - respuesta
 
 respuesta(1).
+numpreguntas(6).
 
 /****************** Metas ******************/
 
@@ -128,62 +129,80 @@ respuesta(1).
 // -- Entrypoint -- //
 
 +!start : bot(created) <-
+	!reset;
 	!preguntar_tq_ntq;
 	.wait(1000);
 	!preguntar_aq.
 
+// Resetear preguntas
+
++!reset <- !tqreset; !ntqreset; !aqreset.
+
++!tqreset : donetq(N,Pregunta) <- -donetq(N,Pregunta); +tq(N,Pregunta); !tqreset.
++!tqreset.
+
++!ntqreset : donentq(N,Pregunta) <- -donentq(N,Pregunta); +ntq(N,Pregunta); !ntqreset.
++!ntqreset.
+
++!aqreset : doneaq(N,Pregunta) <- -doneaq(N,Pregunta); +aq(N,Pregunta); !tqreset.
++!aqreset.
+
 // -- Seleccionar preguntas -- //
 
-+!seleccionar_tq(N,Pregunta) : not donetq(N,_) & tq(N,Pregunta) <-
-	-tq(N,Pregunta);
-	+donetq(N,Pregunta).
++!seleccionar_tq(N,Answer) : dotq(N,_) <- ?tq(New,Answer); -tq(New,Answer); +dotq(New,Answer).
++!seleccionar_tq(N,Answer) : not dotq(N,_) & tq(N,Answer) <- -tq(N,Answer); +dotq(N,Answer).
++!seleccionar_tq(0,Answer) : tq(N,Answer) <- -tq(N,Answer); +dotq(N,Answer).
 
-+!seleccionar_ntq(N,Pregunta) : not donentq(N,_) & ntq(N,Pregunta) <-
-	-ntq(N,Pregunta);
-	+donentq(N,Pregunta).
++!seleccionar_ntq(N,Answer) : dontq(N,_) <- ?ntq(New,Answer); -ntq(New,Answer); +dontq(New,Answer).
++!seleccionar_ntq(N,Answer) : not dontq(N,_) & ntq(N,Answer) <- -ntq(N,Answer); +dontq(N,Answer).
++!seleccionar_ntq(0,Answer) : ntq(N,Answer) <- -ntq(N,Answer); +dontq(N,Answer).
 
-+!seleccionar_aq(N,Pregunta) : not doneaq(N,_) & aq(N,Pregunta) <-
-	-aq(N,Pregunta);
-	+doneaq(N,Pregunta).
++!seleccionar_aq(N,Answer) : doaq(N,_) <- ?aq(New,Answer); -aq(New,Answer); +doaq(New,Answer).
++!seleccionar_aq(N,Answer) : not doaq(N,_) & aq(N,Answer) <- -aq(N,Answer); +doaq(N,Answer).
++!seleccionar_aq(0,Answer) : aq(N,Answer) <- -aq(N,Answer); +doaq(N,Answer).
 
 // -- Realizar preguntas -- //
 
-+!preguntar_tq_ntq <- 
++!preguntar_tq_ntq <-
+	?numpreguntas(N);
 	.println;
 	.println(" ~~~~~~~~~~~ REALIZANDO PREGUNTAS TQ / NTQ ~~~~~~~~~~~ ");
-	for(.range(TQ,1,18)) {
-		!seleccionar_tq(TQ,PreguntaTQ);
+	for(.range(I,1,N)) {
+		// TQ
+		TQ = math.round(math.random(17)) + 1;
 		.println;
 		.println(" == Pregunta tq #", TQ, " elegida == ");
 		.println;
+		!seleccionar_tq(TQ,PreguntaTQ);
 		chat(PreguntaTQ);
 		.wait(1000);
-
-		for(.range(OFFSET,2,0,-1)) {
-			NTQ = (TQ * 3) - OFFSET;
-			!seleccionar_ntq(NTQ,PreguntaNTQ);
-			.println;
-			.println(" == Pregunta ntq #", NTQ, " elegida == ");
-			.println;
-			chat(PreguntaNTQ);
-			.wait(1000);
-		}
+		// NTQ
+		NTQ = (TQ * 3) - math.round(math.random(2));
+		.println;
+		.println(" == Pregunta ntq #", NTQ, " elegida == ");
+		.println;
+		!seleccionar_ntq(NTQ,PreguntaNTQ);
+		chat(PreguntaNTQ);
+		.wait(1000);
 	}.
 
-+!preguntar_aq <- 
++!preguntar_aq <-
+	?numpreguntas(N);
 	.println;
 	.println(" ~~~~~~~~~~~~~ REALIZANDO PREGUNTAS AQ ~~~~~~~~~~~~~~~ ");
-	for(.range(ID,1,18)) {
+	for(.range(I,1,N)) {
+		AQ = math.round(math.random(17)) + 1;
+		!seleccionar_aq(AQ,Pregunta);
 		.println;
-		.println(" == Pregunta aq #", ID, " elegida == ");
+		.println(" == Pregunta aq #", AQ, " elegida == ");
 		.println;
-		!seleccionar_aq(ID,Pregunta);
 		chat(Pregunta);
 		.wait(1000);
 	}.
 
 // -- Obtener respuestas -- //
 
+/*
 // Versión original
 +answer(Respuesta) <-
 	?respuesta(N);
@@ -194,8 +213,10 @@ respuesta(1).
 	.println;
 	.println(Respuesta)
 	.wait(1000).
+*/
 
-// Versión mejorada
+// Versión mejorada para mostrar respuestas ya dadas
+// -- Chatter.java modificado
 +answer(ID, Respuesta) <-
 	?respuesta(N);
 	-+respuesta(N + 1);
