@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+    <!-- Plantillas -->
+
+    <category>
+        <pattern>RESERVARSEMINARIO</pattern>
+        <template>
+            <condition name="login">
+                <li value="unknown">
+                    Primero tienes que decirme quién eres.
+                </li>
+                <li>
+¿Que dia quieres reservalo?<think><set name="topic">reservarseminario_dia</set></think>
+                </li>
+            </condition>
+        </template>
+    </category>
+
+    <!-- Complejo -->
+
+    <category>
+        <pattern>_ RESERVAR ^ SEMINARIO ^ EL * A *</pattern>
+        <template>
+            <condition name="login">
+                <li value="unknown">
+                    Primero tienes que decirme quién eres.
+                </li>
+                <li>
+<mail> <subject>Seminario :: Reserva (Dia: <star index="4"/> | Momento: <star index="5"/>)</subject> <to><bot name="email"/></to> <msg>Funciona, <get name="login" /></msg> </mail>
+                </li>
+            </condition>
+        </template>
+    </category>
+
+    <!-- Simple -->
+
+    <category>
+        <pattern>^ RESERVAR ^ SEMINARIO ^</pattern>
+        <template>
+            <srai>RESERVARSEMINARIO</srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>^ RESERVA ^ SEMINARIO ^</pattern>
+        <template>
+            <srai>RESERVARSEMINARIO</srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>^ RESERVO ^ SEMINARIO ^</pattern>
+        <template>
+            <srai>RESERVARSEMINARIO</srai>
+        </template>
+    </category>
+
+
+    <topic name="reservarseminario_dia">
+        <category>
+            <pattern>*</pattern>
+            <template>
+                ¿Y a qué hora?
+<think><set name="dia"><star/></set><set name="topic">reservarseminario_hora</set></think>
+            </template>
+        </category>
+    </topic>
+
+    <topic name="reservarseminario_hora">
+        <category>
+            <pattern>*</pattern>
+            <template>
+<mail> <subject>Seminario :: Reserva (Dia: <get name="dia"/> | Hora: <star/>)</subject> <to><bot name="email"/></to> <msg>Funciona, <get name="login" /></msg> </mail>
+<think><set name="dia">unknown</set><set name="topic">unknown</set></think>
+            </template>
+        </category>
+    </topic>
+</aiml>

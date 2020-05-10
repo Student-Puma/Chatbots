@@ -46,10 +46,10 @@ public class addRelOnMapFileFor extends DefaultInternalAction {
 		// get the path of Bot Sets		
  		String setsPath = getSetsPath(botName);
 		
-		System.out.println("El path del directorio sets del bot: "+botName+" es "+setsPath);
+		System.out.println("El path del directorio sets del bot: " + botName + " es " + setsPath);
 		
 		// declare the Buffer		
-		File archivo = new File(setsPath + File.separator + file);
+		File archivo = new File(setsPath + File.separator + file + ".txt");
 		BufferedWriter bw;
 		
 		try {
