@@ -4,19 +4,21 @@
 
 respuesta(1).
 
-service(Answer, mailing) :-
-	checkTag("<mail>",Answer).
-checkTag(String,Answer) :-
-	.substring("<mail>",Answer).
+/* -- Servicios -- */
 
-service(Answer, addset) :-
-	checkTag("<addset>",Answer).
-checkTag(String,Answer) :-
-	.substring("<addset>",Answer).
+/* -- Filtros -- */
 
-
-
-
+filter(Respuesta, mailing, To) :-
+	getValTag("<to>",Respuesta,To) &
+	getValTag("<subject>",Respuesta,Subject) &
+	getValTag("<msg>",Respuesta,Msg) &
+	gui.mailing(To,Subject,Msg).
+	
+filter(Respuesta, addset, To) :- 
+	getValTag("<new>",Respuesta,New) &
+	getValTag("<out>",Respuesta,To) &
+	.lower_case(To,File) &
+	gui.addValueOnSetFileFor(New,File,"proyecto").
 
 getValTag(Tag,String,Val) :- 
 	.substring(Tag,String,Fst) &
@@ -27,20 +29,8 @@ getValTag(Tag,String,Val) :-
 	.substring(String,Val,Fst+N,End).
 
 
-
-filter(Respuesta, mailing, Proxy) :-
-	getValTag("<to>",Respuesta,To) &
-	getValTag("<subject>",Respuesta,Subject) &
-	getValTag("<msg>",Respuesta,Msg) &
-	.concat("Acabo de enviar el mensaje a ", Subject, Proxy) &
-	gui.mailing("spam.kikefontanlorenzo@gmail.com","TOT","O").
-
-
-filter(Respuesta, addset, Proxy) :-
-	getValTag("<to>",Respuesta,To) &
-	getValTag("<new>",Respuesta,New) &
-	gui.addValueOnSetFile(To,New,"proyecto") &
-	Proxy = "Añadido al archivo".
+valida(Respuesta) :-
+	.substring("<mail>", Respuesta) | .substring("<addset>", Respuesta).
 
 /* Initial goals */
 
@@ -48,27 +38,29 @@ filter(Respuesta, addset, Proxy) :-
 
 /* Plans */
 
-+!start : bot(created) <-
-	+nothing.
++!start : bot(created).
 
-+answer(Respuesta) : respuesta(N) <-
-	// -answer(Respuesta)[source(Source)];
+
+
+// -- Obtener respuestas -- //
+
++answer(Respuesta) : valida(Respuesta) <-
+	-answer(Respuesta)[source(Source)];
+	?respuesta(N);
 	-+respuesta(N + 1);
 	+contestacion(N, Respuesta);
-	/*
-	if ( service(Respuesta, mailing) ) {
-		.println;
-		.println(" >> Procesando peticion de mailing << ");
-		filter(Respuesta, mailing, Proxy);
-	}
-	*/
-	if ( service(Respuesta, addset) ) {
-		.println;
-		.println(" >> Procesando peticion para anadir << ");
-		filter(Respuesta, addset, Proxy);
-	}
-	.send(student, tell, answer(Proxy));
-	.println(Proxy);
+	.println("Analizando el mensaje");
+	
+	if ( .substring("<addset>", Respuesta) ) {
+		.println("> Procesando peticion de addset");
+		?filter(Respuesta, addset, To);
+		.send(student, tell, answer("Incluido en la lista correctamente"));
+	};
+	if ( .substring("<mail>", Respuesta) ) {
+		.println("> Procesando peticion de mailing");
+		?filter(Respuesta, mailing, To);
+		.send(student, tell, answer("Acabo de mandar la peticion de la que hablamos"));
+	};
 	.wait(1000).
 
 

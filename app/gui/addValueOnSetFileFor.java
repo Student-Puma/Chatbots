@@ -24,8 +24,6 @@ import java.util.logging.Logger;
 //import java.awt.event.ActionEvent;
 //import java.awt.event.ActionListener;
 
-
-
 /** internal action that allow agents to create a set file on the enviroment bot given  */
 
 public class addValueOnSetFileFor extends DefaultInternalAction {
@@ -47,7 +45,7 @@ public class addValueOnSetFileFor extends DefaultInternalAction {
 		System.out.println("El path del directorio sets del bot: "+botName+" es "+setsPath);
 		
 		// declare the Buffer		
-		File archivo = new File(setsPath + File.separator + file);
+		File archivo = new File(setsPath + File.separator + file + ".txt");
 		BufferedWriter bw;
 			
 		try {

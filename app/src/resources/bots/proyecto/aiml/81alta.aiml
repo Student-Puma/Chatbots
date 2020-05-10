@@ -40,8 +40,7 @@
         <category>
             <pattern>^ SI ^</pattern>
             <template>
-<addset><new><get name="login"/></new><to><get name="materia"/></to></addset>
-<think><set name="materia">unknown</set><set name="topic">unknown</set></think>
+<addset><new><get name="login"/></new><out><get name="materia"/></out></addset>
             </template>
         </category>
 

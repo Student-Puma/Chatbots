@@ -120,6 +120,12 @@ aq(18, " Que actividades ocio te gustan mas ").
 respuesta(1).
 numpreguntas(6).
 
+// -- Filtro de conversaciones -- //
+
+valida(Respuesta) :-
+	not .substring("<mail>", Respuesta) &
+	not .substring("<addset>", Respuesta).
+
 /****************** Metas ******************/
 
 !start.
@@ -176,8 +182,14 @@ numpreguntas(6).
 	.println;
 	.println(" ~~~~~~~~~~~~~~~~ REQUERIR SERVICIOS ~~~~~~~~~~~~~~~~~~~ ");
 	.println;
-	!decir("Soy Kike y quiero darme de alta en SI");
-	!decir("Si").
+	!decir("Soy Kike y quiero cambiar de grupo en SI");
+	!decir("Si");
+	!decir("5");
+	.wait(15000);
+	!decir("Quiero darme de alta en SI")
+	!decir("Si");
+	!decir("Quiero un cambio de grupo en TALF")
+	!decir("No");.
 
 +!conversacion_inicial <-
 	.println;
@@ -226,13 +238,14 @@ numpreguntas(6).
 
 // -- Obtener respuestas -- //
 
-+answer(Respuesta) <-
++answer(Respuesta) : valida(Respuesta) <-
+	-answer(Respuesta)[source(Source)];
 	?respuesta(N);
 	-+respuesta(N + 1);
 	+contestacion(N, Respuesta);
 	.println;
 	.println(" >> Constestacion del bot << ");
-	.println;
 	.println(Respuesta)
+	.println;
 	.wait(1000).
 	

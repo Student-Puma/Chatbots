@@ -1,0 +1,67 @@
+// Agent master in project proyecto.mas2j
+
+/* Initial beliefs and rules */
+
+respuesta(1).
+
+/* -- Servicios -- */
+
+service(Answer, mailing) :-
+	checkTag("<mail>",Answer).
+checkTag(String,Answer) :-
+	.substring("<mail>",Answer).
+	
+service(Answer, addset) :-
+	checkTag("<addset>",Answer).
+checkTag(String,Answer) :-
+	.substring("<addset>",Answer).
+
+/* Initial goals */
+
+!start.
+
+/* Plans */
+
++!start : bot(created) <- +nothing.
+
+/* -- Filtros -- */
+
++!filter(Respuesta, mailing, To) <-
+	!getValTag("<to>",Respuesta,To);
+	!getValTag("<subject>",Respuesta,Subject);
+	!getValTag("<msg>",Respuesta,Msg);
+	gui.mailing(To,Subject,Msg).
+	
++!filter(Respuesta, mailing, To) <- +empty.
+
++!getValTag(Tag,String,Val) <- 
+	.substring(Tag,String,Fst);
+	.length(Tag,N);
+	.delete(0,Tag,RestTag);
+	.concat("</",RestTag,EndTag);
+	.substring(EndTag,String,End);
+	.substring(String,Val,Fst+N,End).
+
+// -- Obtener respuestas -- //
+
++answer(Respuesta) : service(Respuesta,mailing) | service(Respuesta,addset) <-
+	-answer(Respuesta)[source(Source)];
+	?respuesta(N);
+	-+respuesta(N + 1);
+	+contestacion(N, Respuesta);
+	.println("Analizando: ", Respuesta);
+	if ( service(Respuesta, mailing) ) {
+		.println;
+		.println("Procesando peticion de mailing");
+		!filter(Respuesta, mailing, To);
+		.send(student, tell, answer("Mensaje enviado correctamente"));
+	}
+	if ( service(Respuesta, addset) ) {
+		.println;
+		.println("Procesando peticion de addset");
+		!filter(Respuesta, addset, To);
+		.send(student, tell, answer("Incluido en la lista correctamente"));
+	}
+	.wait(1000).
+
+
