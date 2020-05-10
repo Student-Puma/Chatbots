@@ -130,6 +130,8 @@ numpreguntas(6).
 
 +!start : bot(created) <-
 	!reset;
+	!conversacion_inicial;
+	.wait(1000);
 	!preguntar_tq_ntq;
 	.wait(1000);
 	!preguntar_aq.
@@ -161,6 +163,25 @@ numpreguntas(6).
 +!seleccionar_aq(N,Answer) : not doaq(N,_) & aq(N,Answer) <- -aq(N,Answer); +doaq(N,Answer).
 +!seleccionar_aq(0,Answer) : aq(N,Answer) <- -aq(N,Answer); +doaq(N,Answer).
 
+// -- Conversaciones -- //
+
++!decir(Mensaje) <-
+	.println;
+	chat(Mensaje);
+	.println;
+	.wait(1000).
+
++!conversacion_inicial <-
+	.println;
+	.println(" ~~~~~~~ REALIZANDO CONVERSACION INTRODUCTORIA ~~~~~~~~~ ");
+	.println;
+	!decir("Hola, como te llamas?");
+	!decir("Yo me llamo Kike");
+	!decir("Cual es mi numero favorito");
+	!decir("Si");
+	!decir("Tu numero favorito es el 10");
+	!decir("Cual es mi numero favorito").
+
 // -- Realizar preguntas -- //
 
 +!preguntar_tq_ntq <-
@@ -172,18 +193,14 @@ numpreguntas(6).
 		TQ = math.round(math.random(17)) + 1;
 		.println;
 		.println(" == Pregunta tq #", TQ, " elegida == ");
-		.println;
 		!seleccionar_tq(TQ,PreguntaTQ);
-		chat(PreguntaTQ);
-		.wait(1000);
+		!decir(PreguntaTQ);
 		// NTQ
 		NTQ = (TQ * 3) - math.round(math.random(2));
-		.println;
 		.println(" == Pregunta ntq #", NTQ, " elegida == ");
 		.println;
 		!seleccionar_ntq(NTQ,PreguntaNTQ);
-		chat(PreguntaNTQ);
-		.wait(1000);
+		!decir(PreguntaNTQ);
 	}.
 
 +!preguntar_aq <-
@@ -196,8 +213,7 @@ numpreguntas(6).
 		.println;
 		.println(" == Pregunta aq #", AQ, " elegida == ");
 		.println;
-		chat(Pregunta);
-		.wait(1000);
+		!decir(Pregunta);
 	}.
 
 // -- Obtener respuestas -- //
