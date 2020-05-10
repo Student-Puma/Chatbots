@@ -1,6 +1,6 @@
 // Agente student
 
-/**************** Preguntas ****************/
+/**************** Conocimiento ****************/
 
 // Preguntas tq / ntq
 

@@ -1,12 +1,12 @@
-// Agent master in project proyecto.mas2j
+// Agente master
 
-/* Initial beliefs and rules */
+/**************** Conocimiento ****************/
+
+// Empezamos el proceso de pregunta - respuesta
 
 respuesta(1).
 
-/* -- Servicios -- */
-
-/* -- Filtros -- */
+// -- Etiquetas -- //
 
 filter(Respuesta, mailing, To) :-
 	getValTag("<to>",Respuesta,To) &
@@ -20,6 +20,8 @@ filter(Respuesta, addset, To) :-
 	.lower_case(To,File) &
 	gui.addValueOnSetFileFor(New,File,"proyecto").
 
+// -- Etiquetas -- //
+	
 getValTag(Tag,String,Val) :- 
 	.substring(Tag,String,Fst) &
 	.length(Tag,N) &
@@ -28,19 +30,20 @@ getValTag(Tag,String,Val) :-
 	.substring(EndTag,String,End) &
 	.substring(String,Val,Fst+N,End).
 
+// -- Filtro de conversaciones -- //
 
 valida(Respuesta) :-
 	.substring("<mail>", Respuesta) | .substring("<addset>", Respuesta).
 
-/* Initial goals */
+/****************** Metas ******************/
 
 !start.
 
-/* Plans */
+/***************** Planes ******************/
+
+// -- Entrypoint -- //
 
 +!start : bot(created).
-
-
 
 // -- Obtener respuestas -- //
 
@@ -62,5 +65,3 @@ valida(Respuesta) :-
 		.send(student, tell, answer("Acabo de mandar la peticion de la que hablamos"));
 	};
 	.wait(1000).
-
-
