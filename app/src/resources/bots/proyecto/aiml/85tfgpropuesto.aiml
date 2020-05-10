@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+    <!-- Plantillas -->
+
+    <category>
+        <pattern>SOLICITARTFG *</pattern>
+        <template>
+            <condition name="login">
+                <li value="unknown">
+Primero tienes que decirme quién eres.
+                </li>
+                <li><think><set name="assig"><map name="tfgs"><star/></map></set></think>
+                    <condition name="assig">
+                        <li value="unknown">
+<addmap><new><star/>:<get name="login"/></new><out>tfgs</out></addmap>
+                        </li>
+                        <li>
+El TFG ya está asignado
+                        </li>
+            </condition>
+                </li>
+            </condition>
+        </template>
+    </category>
+
+    <!-- Complejo -->
+
+    <category>
+        <pattern>_ TFG PROPUESTO ^</pattern>
+        <template>
+            ¿Cual es el ID del TFG propuesto que deseas hacer?
+            <think><set name="topic">seleccTFGp</set></think>
+        </template>
+    </category>
+
+    <topic name="seleccTFGp">
+        <category>
+            <pattern>*</pattern>
+            <template>
+                <think><set name="topic">unknown</set></think>
+                <srai>SOLICITARTFG <star/></srai>
+            </template>
+        </category>
+    </topic>
+
+</aiml>

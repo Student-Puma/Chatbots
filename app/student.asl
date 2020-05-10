@@ -182,7 +182,7 @@ valida(Respuesta) :-
 	.println;
 	.println(" ~~~~~~~~~~~~~~~~ REQUERIR SERVICIOS ~~~~~~~~~~~~~~~~~~~ ");
 	.println;
-	!decir("Soy Kike y quiero cambiar de grupo en SI");
+	/*!decir("Soy Kike y quiero cambiar de grupo en SI");
 	!decir("Si");
 	!decir("5");
 	.wait(10000);
@@ -191,7 +191,9 @@ valida(Respuesta) :-
 	!decir("Quiero un cambio de grupo en TALF")
 	!decir("No");
 	!decir("Me gustaria reservar un seminario el lunes a las 6");
-	.wait(10000).
+	.wait(10000);*/
+	!decir("Me llamo Kike");
+	!decir("Tambien me ayudarias a solicitar practicas en empresas?").
 
 +!conversacion_inicial <-
 	.println;

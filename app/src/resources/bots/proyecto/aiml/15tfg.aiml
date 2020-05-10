@@ -21,7 +21,7 @@
     <template><srai>TFGM</srai></template>
   </category>
   <category>
-    <pattern>_ TFG ^</pattern>
+    <pattern>_ TFGA ^</pattern>
     <template><srai>TFGM</srai></template>
   </category>
   <category>

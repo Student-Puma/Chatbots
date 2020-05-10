@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+    <!-- Plantillas -->
+
+    <category>
+        <pattern>ASIGNACIONPRACTICAS</pattern>
+        <template>
+            <condition name="login">
+                <li value="unknown">
+Primero tienes que decirme quién eres.
+                </li>
+                <li>
+<addset><new><get name="login"/></new><out>practicas</out></addset>
+                </li>
+            </condition>
+        </template>
+    </category>
+
+    <!-- Complejo -->
+
+    <category>
+        <pattern>_ SOLICITAR ^ PRACTICAS *</pattern>
+        <template>
+<srai>ASIGNACIONPRACTICAS</srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>_ ASIGNACION ^ PRACTICAS *</pattern>
+        <template>
+<srai>ASIGNACIONPRACTICAS</srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>_ ASIGNAR ^ PRACTICAS *</pattern>
+        <template>
+<srai>ASIGNACIONPRACTICAS</srai>
+        </template>
+    </category>
+
+</aiml>
