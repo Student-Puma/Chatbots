@@ -1,9 +1,9 @@
-// Agent student in project proyecto.mas2j
-
+// Agente student
+
 /**************** Preguntas ****************/
 
 // Preguntas tq / ntq
-
+
 tq(1, " Hablame un poco sobre la Universidad de Vigo ").
 ntq(1, " Que me dices de la Universidad de Vigo ").
 ntq(2, " Puedes hablarme de la Universidad de Vigo ").
@@ -115,46 +115,94 @@ aq(16, " Has ido alguna vez a la Biblioteca ").
 aq(17, " Quieres revisar alguna nota de la materia de Sistemas Inteligentes ").
 aq(18, " Que actividades ocio te gustan mas ").
 
-/* Initial goals */
-
-!start.
-
-/* Plans */
-
-+!start : bot(created) <-
-	chat("Hola").
+// Empezamos el proceso de pregunta - respuesta
 
-+!level0 <-
-	for (.range(I,1,5)) {
-		Sel = math.round(math.random(17))+1;
+respuesta(1).
+
+/****************** Metas ******************/
+
+!start.
+
+/***************** Planes ******************/
+
+// -- Entrypoint -- //
+
++!start : bot(created) <-
+	!preguntar_tq_ntq;
+	.wait(1000);
+	!preguntar_aq.
+
+// -- Seleccionar preguntas -- //
+
++!seleccionar_tq(N,Pregunta) : not donetq(N,_) & tq(N,Pregunta) <-
+	-tq(N,Pregunta);
+	+donetq(N,Pregunta).
+
++!seleccionar_ntq(N,Pregunta) : not donentq(N,_) & ntq(N,Pregunta) <-
+	-ntq(N,Pregunta);
+	+donentq(N,Pregunta).
+
++!seleccionar_aq(N,Pregunta) : not doneaq(N,_) & aq(N,Pregunta) <-
+	-aq(N,Pregunta);
+	+doneaq(N,Pregunta).
+
+// -- Realizar preguntas -- //
+
++!preguntar_tq_ntq <- 
+	.println;
+	.println(" ~~~~~~~~~~~ REALIZANDO PREGUNTAS TQ / NTQ ~~~~~~~~~~~ ");
+	for(.range(TQ,1,18)) {
+		!seleccionar_tq(TQ,PreguntaTQ);
 		.println;
-		.println("La regla del ANEXO I elegida es la: ", Sel," <===============================");
+		.println(" == Pregunta tq #", TQ, " elegida == ");
 		.println;
-		!select(Sel,Ans);
-		.println;
-		.println("%%%%%%%%%%%%%%%%%%%%%% TRAZA DEL BOT %%%%%%%%%%%%%%%%%%%%%%%%");
-		.println;
-		chat(Ans);
+		chat(PreguntaTQ);
 		.wait(1000);
-		
-		.println;
-		.println("%%%%%%%%%%%%%%%%%% REFORMULO LA PREGUNTA %%%%%%%%%%%%%%%%%%%%");
-		.println;
-		New = (Sel * 3) - math.round(math.random(2));
-		.println("La nueva formulacion de la pregunta es ===========================> ", New);
-		!selectb(New,NewAns);
-		chat(NewAns);
-		.wait(1000);
-		
+
+		for(.range(OFFSET,2,0,-1)) {
+			NTQ = (TQ * 3) - OFFSET;
+			!seleccionar_ntq(NTQ,PreguntaNTQ);
+			.println;
+			.println(" == Pregunta ntq #", NTQ, " elegida == ");
+			.println;
+			chat(PreguntaNTQ);
+			.wait(1000);
+		}
 	}.
 
--answer(Respuesta) <-
++!preguntar_aq <- 
+	.println;
+	.println(" ~~~~~~~~~~~~~ REALIZANDO PREGUNTAS AQ ~~~~~~~~~~~~~~~ ");
+	for(.range(ID,1,18)) {
+		.println;
+		.println(" == Pregunta aq #", ID, " elegida == ");
+		.println;
+		!seleccionar_aq(ID,Pregunta);
+		chat(Pregunta);
+		.wait(1000);
+	}.
+
+// -- Obtener respuestas -- //
+
+// Versión original
++answer(Respuesta) <-
 	?respuesta(N);
-	-+respuesta(N+1);
-	+resposta(N,Respuesta);
+	-+respuesta(N + 1);
+	+contestacion(N, Respuesta);
 	.println;
-	.println(" >> Constestaci�n del bot << ");
+	.println(" >> Constestacion del bot << ");
 	.println;
-	.println(N, " : ", Respuesta);
-	.println;
+	.println(Respuesta)
 	.wait(1000).
+
+// Versión mejorada
++answer(ID, Respuesta) <-
+	?respuesta(N);
+	-+respuesta(N + 1);
+	+contestacion(ID, Respuesta);
+	.println;
+	.println(" >> Constestacion del bot << ");
+	.println;
+	.println(Respuesta)
+	.wait(1000).
+	

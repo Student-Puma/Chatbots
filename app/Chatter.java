@@ -20,16 +20,19 @@ import org.alicebot.ab.utils.IOUtils;
 
 public class Chatter extends Environment {
 
-    private Logger logger = Logger.getLogger("prueba.mas2j."+Chat.class.getName());
+	private static String botName = "proyecto";
 	private static final boolean TRACE_MODE = true;
-	static String botName = "mybot";
 	private String resourcesPath = getResourcesPath();
+    private Logger logger = Logger.getLogger("proyecto.mas2j." + Chat.class.getName());
 
-	private Bot bot= new Bot(botName, resourcesPath);
+    private int contador = 0;
+	private Bot bot = new Bot(botName, resourcesPath);
 	private Chat chatSession = new Chat(bot);
-	private String response = "No tengo nada que decir";
+	private String respuesta = "No tengo nada que decir";
 
-    /** Called before the MAS execution with the args informed in .mas2j */
+    /**
+      * Called before the MAS execution with the args informed in .mas2j
+      */
     @Override
     public void init(String[] args) {
         super.init(args);
@@ -37,28 +40,25 @@ public class Chatter extends Environment {
 		
 		MagicBooleans.trace_mode = TRACE_MODE;
 		bot.brain.nodeStats();
-
     }
 
-   @Override
+    @Override
     public boolean executeAction(String ag, Structure action) {
-        logger.info(ag+" doing: "+ action);
         try {
             if (action.getFunctor().equals("chat")) {
-                String request = ((StringTerm)action.getTerm(0)).getString();
-				//logger.info("???????????????????????????????????????????????????????????????");
-				//logger.info("El entorno va a procesar la pregunta:>"+request);
-				//logger.info("???????????????????????????????????????????????????????????????");
-				
-				response = chatSession.multisentenceRespond(request);
-			
-				while (response.contains("&lt;")) response = response.replace("&lt;", "<");
-				while (response.contains("&gt;")) response = response.replace("&gt;", ">");
-
-				addPercept(new LiteralImpl("answer").addTerms(new StringTermImpl(response)));
-				
-				//addPercept(Literal.parseLiteral("answer('"+response+"')"));
-
+                // Obtenemos la pregunta
+                String pregunta = ((StringTerm) action.getTerm(0)).getString();
+                logger.info(ag + " pregunta " + pregunta);
+                // Obtenemos la respyesta
+				respuesta = chatSession.multisentenceRespond(pregunta);
+                // Normalizamos la respuesta
+				while (respuesta.contains("&lt;")) respuesta = respuesta.replace("&lt;", "<");
+				while (respuesta.contains("&gt;")) respuesta = respuesta.replace("&gt;", ">");
+                // Añadimos la percepción de una nueva respuesta al agente
+                // -- Versión antigua:
+                //addPercept(new LiteralImpl("answer").addTerms(new StringTermImpl(response)));
+				// -- Versión nueva:
+                addPercept(new LiteralImpl("answer").addTerms(new NumberTermImpl(++this.contador), new StringTermImpl(respuesta)));
             } else {
                 return false;
             }
@@ -69,7 +69,7 @@ public class Chatter extends Environment {
         try {
             Thread.sleep(200);
         } catch (Exception e) {}
-        //informAgsEnvironmentChanged();
+        // informAgsEnvironmentChanged();
         return true;
     }
 
