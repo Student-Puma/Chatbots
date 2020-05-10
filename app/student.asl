@@ -129,12 +129,13 @@ numpreguntas(6).
 // -- Entrypoint -- //
 
 +!start : bot(created) <-
-	!reset;
+	/*!reset;
 	!conversacion_inicial;
 	.wait(1000);
 	!preguntar_tq_ntq;
 	.wait(1000);
-	!preguntar_aq.
+	!preguntar_aq.*/
+	!servicios.
 
 // Resetear preguntas
 
@@ -171,6 +172,13 @@ numpreguntas(6).
 	.println;
 	.wait(1000).
 
++!servicios <-
+	.println;
+	.println(" ~~~~~~~~~~~~~~~~ REQUERIR SERVICIOS ~~~~~~~~~~~~~~~~~~~ ");
+	.println;
+	!decir("Soy Kike y quiero darme de alta en SI");
+	!decir("Si").
+
 +!conversacion_inicial <-
 	.println;
 	.println(" ~~~~~~~ REALIZANDO CONVERSACION INTRODUCTORIA ~~~~~~~~~ ");
@@ -181,7 +189,7 @@ numpreguntas(6).
 	!decir("Si");
 	!decir("Tu numero favorito es el 10");
 	!decir("Cual es mi numero favorito").
-
+	
 // -- Realizar preguntas -- //
 
 +!preguntar_tq_ntq <-
@@ -218,8 +226,6 @@ numpreguntas(6).
 
 // -- Obtener respuestas -- //
 
-/*
-// Versión original
 +answer(Respuesta) <-
 	?respuesta(N);
 	-+respuesta(N + 1);
@@ -228,18 +234,5 @@ numpreguntas(6).
 	.println(" >> Constestacion del bot << ");
 	.println;
 	.println(Respuesta)
-	.wait(1000).
-*/
-
-// Versión mejorada para mostrar respuestas ya dadas
-// -- Chatter.java modificado
-+answer(Respuesta) <-
-	?respuesta(N);
-	-+respuesta(N + 1);
-	+contestacion(Respuesta);
-	.println;
-	.println(" >> Constestacion del bot << ");
-	.println;
-	.println(Respuesta);
 	.wait(1000).
 	

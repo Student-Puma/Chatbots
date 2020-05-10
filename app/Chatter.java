@@ -44,6 +44,7 @@ public class Chatter extends Environment {
 
     @Override
     public boolean executeAction(String ag, Structure action) {
+        clearPercepts();
         try {
             if (action.getFunctor().equals("chat")) {
                 // Obtenemos la pregunta
@@ -83,8 +84,6 @@ public class Chatter extends Environment {
 		File currDir = new File(".");
 		String path = currDir.getAbsolutePath();
 		path = path.substring(0, path.length() - 2);
-		//System.out.println(path);
-		//logger.info(path);
 		String resourcesPath = path + File.separator + "src" + File.separator + "resources";
 		return resourcesPath;
 	}

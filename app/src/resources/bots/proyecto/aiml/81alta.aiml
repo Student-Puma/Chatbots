@@ -6,20 +6,13 @@
     <category>
         <pattern>ALTA *</pattern>
         <template>
-            <condition name="nombre">
+            <condition name="login">
                 <li value="unknown">
                     Primero tienes que decirme quién eres.
                 </li>
                 <li>
-                    <condition name="nombre">
-                        <li value="unknown">
-Primero tienes que decirme quién eres.
-                        </li>
-                        <li>
-<srai>ALUMNO DE <star/> <get name="nombre"/></srai>
+<srai>ALUMNO DE <star/> <get name="login"/></srai>
 <condition name="matriculado"><li value="NO">¿Quieres que proceda a realizar la matrícula?<think><set name="materia"><star/></set><set name="topic">alta</set></think></li></condition>
-                        </li>
-                    </condition>
                 </li>
             </condition>
         </template>
@@ -47,8 +40,8 @@ Primero tienes que decirme quién eres.
         <category>
             <pattern>^ SI ^</pattern>
             <template>
-                <addset><new><get name="nombre"/></new><get name="materia"/></addset>
-                <think><set name="materia">unknown</set><set name="topic">unknown</set></think>
+<addset><new><get name="login"/></new><to><get name="materia"/></to></addset>
+<think><set name="materia">unknown</set><set name="topic">unknown</set></think>
             </template>
         </category>
 
@@ -60,5 +53,4 @@ Primero tienes que decirme quién eres.
             </template>
         </category>
     </topic>
-
 </aiml>

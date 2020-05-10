@@ -9,9 +9,8 @@ MAS proyecto {
     environment: Chatter
     agents:
 		student;
-		master;
+		// master;
 		
-		// tester;
-		// juan;
+		// tester; juan;
 }
 

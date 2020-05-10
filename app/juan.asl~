@@ -122,15 +122,15 @@ respuesta(1).
 +!start : bot(created) <- 
 	//!tqreset;
 	//!aqreset;
-	!level0;
+	//!level0;
 	//.wait(10000);
 	//!level1;
 	//.wait(2000);
-	// chat("Definir amistad");
+	chat("Definir amistad");
 	.wait(1000);
 	chat("Pepa y Ana");
 	.wait(1000);
-	gui.mailing("spam.kikefontanlorenzo@gmail.com", "Test Terminado", "Este es un mensaje de prueba de envio de mail.").
+	gui.mailing("spam.kikefontanlorenzo@gmail.com","Test Terminado","Este es un mensaje de prueba de envío de mail.").
 //gui.talking("Carlos","hola");chat("Hola").
 
 +!tqreset : dotq(N,Str) <- -dotq(N,Str); +tq(N,Str); !tqreset.
@@ -153,7 +153,7 @@ respuesta(1).
 
 +!level0 <-
 	for (.range(I,1,5)) {
-		Sel = math.round(math.random(1))+1;
+		Sel = math.round(math.random(17))+1;
 		.println;
 		.println("La regla del ANEXO I elegida es la: ", Sel," <===============================");
 		.println;

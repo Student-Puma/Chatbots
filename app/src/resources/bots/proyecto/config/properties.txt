@@ -1,6 +1,6 @@
 url:http://www.github.com/student-puma/chatbots
 name:ESEIDO
-email:kikefontanlorenzo@gmail.com
+email:masterssia@gmail.com
 gender:male
 botmaster:Kike Fontán
 organization:ESEI

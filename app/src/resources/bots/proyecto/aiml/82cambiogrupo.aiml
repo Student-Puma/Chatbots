@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+    <!-- Plantillas -->
+
+    <category>
+        <pattern>CAMBIARGRUPO *</pattern>
+        <template>
+            <condition name="login">
+                <li value="unknown">
+                    Primero tienes que decirme quién eres.
+                </li>
+                <li>
+<srai>ALUMNO DE <star/> <get name="login"/></srai>
+<condition name="matriculado"><li value="NO">¿Quieres que proceda a realizar el cambio de grupo?<think><set name="materia"><star/></set><set name="topic">cambiogrupo</set></think></li></condition>
+                </li>
+            </condition>
+        </template>
+    </category>
+
+    <!-- Correcto -->
+
+    <category>
+        <pattern>^ CAMBIO ^ GRUPO ^ <set>materias</set> ^</pattern>
+        <template>
+            <srai>CAMBIARGRUPO <star index="4"/></srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>^ CAMBIAR ^ GRUPO ^ <set>materias</set> ^</pattern>
+        <template>
+            <srai>CAMBIARGRUPO <star index="4"/></srai>
+        </template>
+    </category>
+
+    <!-- Incorrecto -->
+
+    <category>
+        <pattern>^ CAMBIO ^ GRUPO *</pattern>
+        <template>
+            No es una materia válida para darte de alta
+        </template>
+    </category>
+
+    <category>
+        <pattern>^ CAMBIAR ^ GRUPO *</pattern>
+        <template>
+            No es una materia válida para darte de alta
+        </template>
+    </category>
+
+
+
+    <topic name="cambiogrupo">
+        <category>
+            <pattern>^ SI ^</pattern>
+            <template>
+                Escribe el número del grupo al que quieras moverte
+<think><set name="topic">selecciongrupo</set></think>
+            </template>
+        </category>
+
+        <category>
+            <pattern>*</pattern>
+            <template>
+                Cancelaré el proceso, entonces.
+                <think><set name="materia">unknown</set><set name="topic">unknown</set></think>
+            </template>
+        </category>
+    </topic>
+
+    <topic name="selecciongrupo">
+        <category>
+            <pattern>*</pattern>
+            <template>
+<mail> <subject><get name="materia"/> :: Cambio al grupo <star/></subject> <to><bot name="email"/></to> <msg>Funciona</msg> </mail>
+<think><set name="materia">unknown</set><set name="topic">unknown</set></think>
+            </template>
+        </category>
+    </topic>
+</aiml>
